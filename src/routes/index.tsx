@@ -5,17 +5,20 @@ const CTA_URL = "https://linkthem.net/aff_c?offer_id=1234&aff_id=115643";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Brandy Melville $750 Reward — Claim Yours" },
+      { title: "Brandy Melville $750 Gift Card — Complete Your Registration" },
       {
         name: "description",
         content:
-          "Follow four short steps and claim your $750 Brandy Melville reward today. Limited spots available.",
+          "Finish a few easy steps and claim your $750 Brandy Melville gift card today.",
       },
-      { property: "og:title", content: "Brandy Melville $750 Reward — Claim Yours" },
+      {
+        property: "og:title",
+        content: "Brandy Melville $750 Gift Card — Complete Your Registration",
+      },
       {
         property: "og:description",
         content:
-          "Follow four short steps and claim your $750 Brandy Melville reward today. Limited spots available.",
+          "Finish a few easy steps and claim your $750 Brandy Melville gift card today.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,118 +28,108 @@ export const Route = createFileRoute("/")({
 });
 
 const steps = [
+  'Tap the "Claim Now" button',
+  "Fill in your email and basic details",
+  "Finish 4-5 sponsored deals",
+  "Enjoy your $750 Brandy Melville gift card!",
+];
+
+const faqs = [
   {
-    n: "1",
-    title: "Share your email",
-    body: "Drop in a valid email address so we know where to send your reward details.",
+    q: "How much time do the deals take?",
+    a: "Most people wrap them up within a short session — many deals only take a couple of minutes each.",
   },
   {
-    n: "2",
-    title: "Answer a few quick questions",
-    body: "A short survey — it only takes a moment and helps us confirm you qualify.",
+    q: "What exactly is a deal?",
+    a: "A deal is a short offer from one of our sponsors, such as signing up for a trial, a sample, or a quick survey.",
   },
   {
-    n: "3",
-    title: "Complete 4-5 offers",
-    body: "Pick and finish 4-5 sponsor offers from the list. Choose whichever ones suit you best.",
+    q: "How many deals must I finish?",
+    a: "You need to complete 4-5 sponsored deals for your reward to be approved.",
   },
   {
-    n: "4",
-    title: "Receive your $750",
-    body: "Once your offers are verified, your $750 Brandy Melville reward is released to you.",
+    q: "When does my reward arrive?",
+    a: "As soon as your deals are confirmed, your reward is sent out to the email you registered with.",
   },
 ];
 
-function CtaButton({ label }: { label: string }) {
-  return (
-    <a
-      href={CTA_URL}
-      rel="nofollow sponsored noopener"
-      className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground shadow-sm transition-transform hover:scale-[1.03] hover:bg-primary/90"
-    >
-      {label}
-    </a>
-  );
-}
-
 function Index() {
   return (
-    <main className="min-h-screen bg-background font-sans text-foreground">
-      <header className="border-b border-border bg-card">
-        <div className="mx-auto max-w-4xl px-6 py-6 text-center">
-          <p className="font-display text-2xl font-semibold uppercase tracking-[0.35em]">
+    <main className="min-h-screen bg-background px-5 py-10 font-sans text-foreground">
+      <div className="mx-auto w-full max-w-xl">
+        <header className="text-center">
+          <h1 className="font-display text-4xl font-bold tracking-tight text-accent-foreground">
             Brandy Melville
-          </p>
-        </div>
-      </header>
-
-      <section className="bg-secondary">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">
-            Limited time reward
-          </p>
-          <h1 className="mt-6 font-display text-5xl font-bold leading-tight sm:text-6xl">
-            Get a $750 Brandy Melville Reward
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Refresh your closet on us. Complete a handful of simple steps and walk away with $750
-            to spend on the pieces you have been eyeing.
-          </p>
-          <div className="mt-10">
-            <CtaButton label="Claim my $750" />
-          </div>
-          <p className="mt-4 text-xs text-muted-foreground">
-            Only a limited number of rewards are available each day.
-          </p>
-        </div>
-      </section>
+          <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-accent" />
+        </header>
 
-      <section className="mx-auto max-w-4xl px-6 py-20">
-        <h2 className="text-center font-display text-4xl font-semibold">How it works</h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {steps.map((s) => (
-            <div
-              key={s.n}
-              className="rounded-2xl border border-border bg-card p-7 text-left shadow-sm"
+        <h2 className="mt-8 text-center font-display text-3xl font-bold">
+          Finish Your Registration
+        </h2>
+        <p className="mt-3 text-center text-sm text-muted-foreground">
+          Work through these easy steps to claim your $750 Brandy Melville gift card
+        </p>
+
+        <ol className="mt-8 space-y-4">
+          {steps.map((s, i) => (
+            <li
+              key={s}
+              className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-5"
             >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-accent-foreground">
-                {s.n}
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-accent-foreground">
+                {i + 1}
               </span>
-              <h3 className="mt-4 font-display text-2xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </div>
+              <span className="text-sm font-bold">{s}</span>
+            </li>
+          ))}
+        </ol>
+
+        <a
+          href={CTA_URL}
+          rel="nofollow sponsored noopener"
+          className="mt-9 flex w-full items-center justify-center rounded-xl bg-primary px-6 py-5 text-lg font-bold uppercase tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          Claim Now
+        </a>
+
+        <p className="mx-auto mt-4 max-w-md text-center text-xs leading-relaxed text-muted-foreground">
+          By choosing "Claim Now", you accept that the required steps must be completed to
+          receive your gift card.
+        </p>
+
+        <h2 className="mt-14 font-display text-2xl font-bold">Questions People Ask Often</h2>
+        <div className="mt-5 space-y-3">
+          {faqs.map((f) => (
+            <details
+              key={f.q}
+              className="group rounded-xl border border-border bg-card px-5 py-4 [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary className="flex cursor-pointer items-center justify-between text-sm font-bold">
+                {f.q}
+                <span className="ml-3 text-muted-foreground transition-transform group-open:rotate-180">
+                  ⌄
+                </span>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+            </details>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <CtaButton label="Start now" />
-        </div>
-      </section>
 
-      <section className="bg-card">
-        <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-          <h2 className="font-display text-3xl font-semibold">Why people love this</h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {[
-              { t: "Free to join", d: "There is no cost to sign up and take part." },
-              { t: "Quick to finish", d: "Most people wrap up the steps the same day." },
-              { t: "Real rewards", d: "Verified participants get their $750 released." },
-            ].map((i) => (
-              <div key={i.t}>
-                <h3 className="font-display text-xl font-semibold">{i.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{i.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <footer className="border-t border-border py-10 text-center text-xs leading-relaxed text-muted-foreground">
-        <p className="mx-auto max-w-2xl px-6">
-          This promotion is not affiliated with, sponsored by, or endorsed by Brandy Melville.
-          Rewards require completion of the listed steps and offer requirements.
-        </p>
-        <p className="mt-4">&copy; {new Date().getFullYear()} All rights reserved.</p>
-      </footer>
+        <footer className="mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-bold text-accent-foreground">
+          <a href={CTA_URL} rel="nofollow sponsored noopener" className="hover:underline">
+            Terms of Use
+          </a>
+          <span className="text-muted-foreground">•</span>
+          <a href={CTA_URL} rel="nofollow sponsored noopener" className="hover:underline">
+            Privacy Notice
+          </a>
+          <span className="text-muted-foreground">•</span>
+          <a href={CTA_URL} rel="nofollow sponsored noopener" className="hover:underline">
+            BrandyMelville.com
+          </a>
+        </footer>
+      </div>
     </main>
   );
 }
