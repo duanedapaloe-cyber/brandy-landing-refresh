@@ -1,26 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+
+const CTA_URL = "https://linkthem.net/aff_c?offer_id=1234&aff_id=115643";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Brandy Melville $750 Gift Card — Finish Signing Up" },
+      { title: "Brandy Melville $750 Reward — Claim Yours" },
       {
         name: "description",
         content:
-          "Wrap up your sign-up in four quick steps and receive your $750 Brandy Melville gift card.",
+          "Follow four short steps and claim your $750 Brandy Melville reward today. Limited spots available.",
       },
-      { property: "og:title", content: "Brandy Melville $750 Gift Card — Finish Signing Up" },
+      { property: "og:title", content: "Brandy Melville $750 Reward — Claim Yours" },
       {
         property: "og:description",
         content:
-          "Wrap up your sign-up in four quick steps and receive your $750 Brandy Melville gift card.",
+          "Follow four short steps and claim your $750 Brandy Melville reward today. Limited spots available.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,112 +25,118 @@ export const Route = createFileRoute("/")({
 });
 
 const steps = [
-  'Tap the "Get Mine" button',
-  "Share your email and a few basic details",
-  "Finish 4-5 partner offers",
-  "Spend your $750 Brandy Melville gift card!",
+  {
+    n: "1",
+    title: "Share your email",
+    body: "Drop in a valid email address so we know where to send your reward details.",
+  },
+  {
+    n: "2",
+    title: "Answer a few quick questions",
+    body: "A short survey — it only takes a moment and helps us confirm you qualify.",
+  },
+  {
+    n: "3",
+    title: "Complete 4-5 offers",
+    body: "Pick and finish 4-5 sponsor offers from the list. Choose whichever ones suit you best.",
+  },
+  {
+    n: "4",
+    title: "Receive your $750",
+    body: "Once your offers are verified, your $750 Brandy Melville reward is released to you.",
+  },
 ];
 
-const faqs = [
-  {
-    q: "How much time do the offers take?",
-    a: "Most people wrap everything up in about 15-30 minutes. Some offers finish in seconds, while a few take a little longer to register.",
-  },
-  {
-    q: "What exactly is an offer?",
-    a: "An offer is a short action from one of our partners — signing up for a free trial, answering a quick survey, or trying out an app.",
-  },
-  {
-    q: "How many offers are required?",
-    a: "You'll need to finish 4-5 partner offers before your reward is unlocked.",
-  },
-  {
-    q: "When does my reward arrive?",
-    a: "Once every offer is confirmed, your gift card is emailed to the address you entered, usually within a few days.",
-  },
-];
+function CtaButton({ label }: { label: string }) {
+  return (
+    <a
+      href={CTA_URL}
+      rel="nofollow sponsored noopener"
+      className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground shadow-sm transition-transform hover:scale-[1.03] hover:bg-primary/90"
+    >
+      {label}
+    </a>
+  );
+}
 
 function Index() {
   return (
-    <main className="min-h-screen bg-background px-5 py-12">
-      <div className="mx-auto w-full max-w-lg">
-        <header className="text-center">
-          <h1 className="font-display text-3xl font-semibold uppercase tracking-[0.35em] text-foreground">
-            Brandy
+    <main className="min-h-screen bg-background font-sans text-foreground">
+      <header className="border-b border-border bg-card">
+        <div className="mx-auto max-w-4xl px-6 py-6 text-center">
+          <p className="font-display text-2xl font-semibold uppercase tracking-[0.35em]">
+            Brandy Melville
+          </p>
+        </div>
+      </header>
+
+      <section className="bg-secondary">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+          <p className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">
+            Limited time reward
+          </p>
+          <h1 className="mt-6 font-display text-5xl font-bold leading-tight sm:text-6xl">
+            Get a $750 Brandy Melville Reward
           </h1>
-          <p className="font-display text-sm uppercase tracking-[0.5em] text-muted-foreground">
-            Melville
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+            Refresh your closet on us. Complete a handful of simple steps and walk away with $750
+            to spend on the pieces you have been eyeing.
           </p>
-          <div className="mx-auto mt-4 h-px w-16 bg-foreground/60" />
-          <h2 className="mt-8 font-display text-3xl font-semibold text-foreground">
-            Finish Signing Up
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Just a few easy steps stand between you and your $750 Brandy Melville gift card
+          <div className="mt-10">
+            <CtaButton label="Claim my $750" />
+          </div>
+          <p className="mt-4 text-xs text-muted-foreground">
+            Only a limited number of rewards are available each day.
           </p>
-        </header>
+        </div>
+      </section>
 
-        <ol className="mt-10 space-y-3">
-          {steps.map((step, i) => (
-            <li
-              key={step}
-              className="flex items-center gap-4 rounded-md border border-border bg-card px-4 py-4"
+      <section className="mx-auto max-w-4xl px-6 py-20">
+        <h2 className="text-center font-display text-4xl font-semibold">How it works</h2>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {steps.map((s) => (
+            <div
+              key={s.n}
+              className="rounded-2xl border border-border bg-card p-7 text-left shadow-sm"
             >
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                {i + 1}
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-accent-foreground">
+                {s.n}
               </span>
-              <span className="text-sm font-medium text-card-foreground">{step}</span>
-            </li>
+              <h3 className="mt-4 font-display text-2xl font-semibold">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </div>
           ))}
-        </ol>
+        </div>
+        <div className="mt-12 text-center">
+          <CtaButton label="Start now" />
+        </div>
+      </section>
 
-        <Button
-          size="lg"
-          className="mt-10 h-14 w-full rounded-md text-base font-semibold uppercase tracking-[0.2em]"
-        >
-          Get Mine
-        </Button>
-        <p className="mx-auto mt-4 max-w-sm text-center text-xs text-muted-foreground">
-          By tapping "Get Mine" you agree to finish the steps listed above in order to receive your
-          gift card.
-        </p>
-
-        <section className="mt-14">
-          <h3 className="font-display text-2xl font-semibold text-foreground">
-            Questions People Ask
-          </h3>
-          <Accordion type="single" collapsible className="mt-4">
-            {faqs.map((faq) => (
-              <AccordionItem
-                key={faq.q}
-                value={faq.q}
-                className="mb-3 rounded-md border border-border bg-card px-4"
-              >
-                <AccordionTrigger className="text-left text-sm font-semibold">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
+      <section className="bg-card">
+        <div className="mx-auto max-w-3xl px-6 py-16 text-center">
+          <h2 className="font-display text-3xl font-semibold">Why people love this</h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {[
+              { t: "Free to join", d: "There is no cost to sign up and take part." },
+              { t: "Quick to finish", d: "Most people wrap up the steps the same day." },
+              { t: "Real rewards", d: "Verified participants get their $750 released." },
+            ].map((i) => (
+              <div key={i.t}>
+                <h3 className="font-display text-xl font-semibold">{i.t}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{i.d}</p>
+              </div>
             ))}
-          </Accordion>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <footer className="mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium text-muted-foreground">
-          <a href="#" className="hover:text-foreground">
-            Terms of Use
-          </a>
-          <span aria-hidden>·</span>
-          <a href="#" className="hover:text-foreground">
-            Privacy Notice
-          </a>
-          <span aria-hidden>·</span>
-          <a href="#" className="hover:text-foreground">
-            BrandyMelville.com
-          </a>
-        </footer>
-      </div>
+      <footer className="border-t border-border py-10 text-center text-xs leading-relaxed text-muted-foreground">
+        <p className="mx-auto max-w-2xl px-6">
+          This promotion is not affiliated with, sponsored by, or endorsed by Brandy Melville.
+          Rewards require completion of the listed steps and offer requirements.
+        </p>
+        <p className="mt-4">&copy; {new Date().getFullYear()} All rights reserved.</p>
+      </footer>
     </main>
   );
 }
